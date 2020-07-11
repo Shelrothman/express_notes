@@ -1,52 +1,74 @@
-// The routes interact with a couple of "data" sources. These data sources hold
-// arrays of information on table-data, waitinglist, etc.
-const tableData = require("../data/tableData");
-const waitListData = require("../data/waitinglistData");
+/** @format */
 
-// This module exports a function which accepts an Express app object and
-// and sets up the api routes.
+// Setting up the routes ti read the db.json file
+const noteData = require("../db/db.json");
+const fs = require("fs");
+const path = require("path");
+
+//const newNote = $()
+
+const noteArray = [
+  {
+    title: "Test Title One",
+    text: "the first text test"
+  }
+];
+
+
 module.exports = function (app) {
-  //
-  // Below code handles when users "visit" a page. In each of the below cases
-  // when a user visits a link (ex: localhost:PORT/api/admin... they are shown a
-  // JSON of the data in the table)
-  app.get("/api/tables", (req, res) => {
-    res.json(tableData);
-  });
+	app.get("/api/notes", (req, res) => {
+		res.json(noteData);
+	});
 
-  app.get("/api/waitlist", (req, res) => {
-    res.json(waitListData);
-  });
+	app.delete("/api/notes/:id", (req, res) => {
+		fs.readFile(path.join(__dirname, "../db/db.json"), "utf8", (err, data) => {
+			if (err) throw err;
+			//check if file exisits.
+			const fileJSON = JSON.parse(data);
+			const id = parseInt(req.params.id);
+			for (let i = 0; i < fileJSON.length; i++) {
+				if (id === fileJSON[i].id) {
+					fileJSON.splice(i, 1);
+					fs.writeFile(
+						path.join(__dirname, "../db/db.json"),
+						JSON.stringify(fileJSON),
+						(err, data) => {
+							if (err) throw err;
+						}
+					);
+					return res.send("Note Deleted");
+				} else {
+					return res.send(
+						`Cannot delete notes - Record with id: ${id} not found.`
+					);
+				}
+			}
+		});
+	});
 
-  // Below code handles when a user submits a form and thus submits data to the
-  // server. When a user submits form data (a JSON object) the JSON is pushed to
-  // the appropriate JavaScript array (ex. User fills out a reservation
-  // request... this data is then sent to the server... Then the server saves
-  // the data to the tableData array)
+	app.post("/api/notes", (req, res) => {
+		fs.readFile(path.join(__dirname, "../db/db.json"), "utf8", (err, data) => {
+			if (err) throw err;
 
-  app.post("/api/tables", (req, res) => {
-    // Note the code here. The "server" will respond to let the client know if
-    // the user has a table or not. It will do this by sending out the value
-    // "true" when there is an available table. The data submitted by the client
-    // is read from req.body, which was created by the middleware setup in
-    // server.js. (i.e. `app.use(express.urlencoded({ extended: true }))`)
-    if (tableData.length < 5) {
-      tableData.push(req.body);
-      res.json(true);
-    } else {
-      waitListData.push(req.body);
-      res.json(false);
-    }
-  });
+			let reqJson = req.body;
 
-  // This code isn't part of the assignment. This route was added to easily
-  // clear out all the table data to facilitate demonstration. Don"t worry about
-  // it!
-  app.post("/api/clear", (req, res) => {
-    // Empty out the arrays of data
-    tableData.length = 0;
-    waitListData.length = 0;
-
-    res.json({ ok: true });
-  });
+			//code to check if file exisits.
+			const fileJSON = JSON.parse(data);
+			if (fileJSON != null || fileJSON != "undefined" || fileJSON != "") {
+        reqJson.id = fileJSON.length + 1;
+        noteArray.push(newNote);
+			} else {
+				reqJson.id = 1;
+			}
+			fileJSON.push(reqJson);
+			fs.writeFile(
+				path.join(__dirname, "../db/db.json"),
+				JSON.stringify(fileJSON),
+				(err, data) => {
+					if (err) throw err;
+					res.json(reqJson);
+				}
+			);
+		});
+	});
 };
