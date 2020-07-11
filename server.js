@@ -12,7 +12,7 @@ app.use(express.json());
 
 //const serveStatic = require("serve-static");
 //middle-ware function
-app.use(express.static("/public"));
+app.use(express.static("public"));
 //app.use(express.static('files'));
 
 
