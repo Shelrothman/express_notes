@@ -4,4 +4,6 @@ An application that can be used to write, save, and delete notes. This applicati
 
 
 ## Run the app
+    in VScode- npm i  
+        npm i express --save -dev
     node server.js
