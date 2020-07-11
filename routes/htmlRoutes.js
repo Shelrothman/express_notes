@@ -16,21 +16,11 @@ module.exports = function (app) {
 	// last route added to the express app. Any routes added after this one will
 	// be unreachable.
 
-
 	app.get("/notes", (req, res) => {
-		res.sendFile(path.join(__dirname, "../public/notes.html"));
-  });
-  
-  app.get("*", (req, res) => {
-		res.sendFile(path.join(__dirname, "../public/index.html"));
+		res.sendFile(path.join(__dirname, "../notes.html"));
 	});
 
-
-
-  
-
+	app.get("*", (req, res) => {
+		res.sendFile(path.join(__dirname, "../index.html"));
+	});
 };
-
-// app.get("/notes", function(req, res) {
-//   res.json(path.join(__dirname, "../public/notes.html"));
-// });
