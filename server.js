@@ -20,11 +20,5 @@ app.listen(PORT, () => {
   console.log("App listening on PORT: " + PORT);
 });
 
-//ensuring to have at least one HTML page being served the "/" route
-// app.get("/", function(req, res) {
-//     res.json(path.join(__dirname, "public/index.html"));
-//   });
 
-//app.get("/notes", function(req, res) {
-  //  res.json(path.join(__dirname, "notes/index.html"));
-  //});
+
