@@ -44,6 +44,7 @@ module.exports = function (app) {
 				}
 			}
 		});
+		res.sendStatus(200);
 	});
 
 	app.post("/api/notes", (req, res) => {
@@ -56,7 +57,7 @@ module.exports = function (app) {
 			const fileJSON = JSON.parse(data);
 			if (fileJSON != null || fileJSON != "undefined" || fileJSON != "") {
         reqJson.id = fileJSON.length + 1;
-        noteArray.push(newNote);
+        //noteArray.push(newNote);
 			} else {
 				reqJson.id = 1;
 			}
@@ -70,5 +71,6 @@ module.exports = function (app) {
 				}
 			);
 		});
+		res.sendStatus(200);
 	});
 };

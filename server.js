@@ -10,10 +10,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-//const serveStatic = require("serve-static");
 //middle-ware function
 app.use(express.static("public"));
-//app.use(express.static('files'));
+
+//////////
+//app.use("/", setupApiRoutes); //if localhost/api navigate to api routes
+//app.use("/", setupHtmlRoutes); // if localhost navigates to htmlroutes
+
+
 
 
 // The code below points the server to a series of "route" files. These routes
