@@ -13,7 +13,8 @@ app.use(express.json());
 //const serveStatic = require("serve-static");
 //middle-ware function
 app.use(express.static('public'));
-app.use(express.static('files'));
+//app.use(express.static('files'));
+
 // The code below points the server to a series of "route" files. These routes
 // give our server a "map" of how to respond when users visit or request data
 // from various URLs.
