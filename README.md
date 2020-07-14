@@ -16,7 +16,8 @@ An application that can be used to write, save, and delete notes. This applicati
 ## Installation
 
 * Open the project in VScode
-* Install by running `npm i` in the terminal
+* Start by running `npm init` in the terminal
+* Next type `npm i` to install.
 * Then install express with `npm i express --save -dev`
 * Then, start the app with typing `node server.js` into the terminal.
 * View the app live in the local server, port 8088.
