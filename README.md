@@ -1,6 +1,6 @@
 # Express_Notes
 
-![](https://github.com/Q118/generation_team/blob/master/assets/screenshot.png)
+![](https://github.com/Q118/express_notes/blob/master/assets/screenshot.png)
 
 An application that can be used to write, save, and delete notes. This application will use an express backend and save and retrieve note data from a JSON file.
 
