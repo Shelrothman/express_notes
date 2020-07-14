@@ -15,20 +15,15 @@ app.use(express.json());
 //middle-ware function
 app.use(express.static("public"));
 
-//////////
-app.use("/", setupApiRoutes); //if localhost/api navigate to api routes
-app.use("/", setupHtmlRoutes); // if localhost navigates to htmlroutes
+
+app.use("/", setupApiRoutes); //if localhost/api, navigate to api routes
+app.use("/", setupHtmlRoutes); // if localhost, navigates to htmlroutes
 
 
 
 
-// The code below points the server to a series of "route" files. These routes
-// give our server a "map" of how to respond when users visit or request data
-// from various URLs.
-//setupApiRoutes(app);
-//setupHtmlRoutes(app);
-
-// The below code effectively "starts" our server
+// The code below points the server to a series of "route" files. 
+// and it effectively "starts" our server
 app.listen(PORT, () => {
   console.log("App listening on PORT: " + PORT);
 });

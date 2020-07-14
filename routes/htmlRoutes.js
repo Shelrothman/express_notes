@@ -6,8 +6,7 @@ const router = require("express").Router();
 
 //This function adds routes for serving the html files.
 module.exports = function (router) {
-	// Below code handles when users navigate to a page. 
-	//(e.g. follow a link or enter a url in the address bar) 
+	// Below code handles when users navigate to a page.
 
 	router.get("/notes", (req, res) => {
 		res.sendFile(path.join(__dirname, "../public/notes.html"));
