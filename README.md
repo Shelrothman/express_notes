@@ -56,4 +56,4 @@ Test to be done through VScode and Chrome.
 Reach out to me with any questions!
     
 * [Visit my GitHub Page](https://github.com/q118).
-* [Send me an Email](mailto:shelbyfish91@gmail.com).
+* [Send me an Email](mailto:shel.programmer@gmail.com).
